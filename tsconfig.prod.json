@@ -10,6 +10,7 @@
 		"skipLibCheck": true,
 		"experimentalDecorators": true,
 		"removeComments": true,
+		"declaration": true,
 		"lib": [
 			"es6",
 			"dom"

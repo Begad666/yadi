@@ -5,13 +5,17 @@ import gulpLint from "gulp-eslint";
 import gulpPrettier from "gulp-prettier";
 import gulpSourceMaps from "gulp-sourcemaps";
 import gulpTypeDocs from "gulp-typedoc";
+import merge from "merge2";
 import yargs from "yargs";
 const argv = yargs.argv;
 const tsProject = gulpTypescript.createProject("tsconfig.json");
 const tsProdProject = gulpTypescript.createProject("tsconfig.prod.json");
 
 export function clean(): NodeJS.ReadableStream {
-	return gulp.src("dist/**/*.*", { read: false }).pipe(gulpClean());
+	return merge([
+		gulp.src("dist/**/*.*", { read: false }).pipe(gulpClean()),
+		gulp.src("types/**/*.*", { read: false }).pipe(gulpClean()),
+	]);
 }
 
 clean["description"] = "Cleans the dist directory";
@@ -33,47 +37,50 @@ export function lint(): NodeJS.ReadableStream {
 lint["description"] = "Runs eslint on the src directory";
 
 export function build(): NodeJS.ReadableStream {
-	if (!argv.prod) {
-		return gulp
+	if (!argv.prod && !argv["semi-prod"]) {
+		const tsResult = gulp
 			.src("src/**/*.ts")
 			.pipe(gulpSourceMaps.init())
-			.pipe(tsProject())
-			.pipe(
-				gulpSourceMaps.write(".", {
-					includeContent: false,
-					sourceRoot: "../src",
-				})
-			)
-			.pipe(gulp.dest("dist"));
+			.pipe(tsProject());
+		return merge([
+			tsResult.dts.pipe(gulp.dest("types")),
+			tsResult.js
+				.pipe(
+					gulpSourceMaps.write(".", {
+						includeContent: false,
+						sourceRoot: "../src",
+					})
+				)
+				.pipe(gulp.dest("dist")),
+			gulp
+				.src("src/**/*.ts")
+				.pipe(gulpTypeDocs(require("./typedoc.json"))),
+		]);
 	} else {
-		return gulp
-			.src("src/**/*.ts")
-			.pipe(tsProdProject())
-			.js.pipe(gulp.dest("dist"));
+		if (argv["semi-prod"]) {
+			const tsResult = gulp.src("src/**/*.ts").pipe(tsProdProject());
+			return merge([
+				tsResult.dts.pipe(gulp.dest("types")),
+				tsResult.js.pipe(gulp.dest("dist")),
+				gulp
+					.src("src/**/*.ts")
+					.pipe(gulpTypeDocs(require("./typedoc.json"))),
+			]);
+		} else {
+			return gulp
+				.src("src/**/*.ts")
+				.pipe(tsProdProject())
+				.js.pipe(gulp.dest("dist"));
+		}
 	}
 }
 
-build["description"] = "Builds the src directory";
+build["description"] =
+	"Builds the src directory. If the prod flag is not passed, it generates types and docs";
 build["flags"] = {
 	prod: "To build production build",
+	"semi-prod": "To build production build, types and docs",
 };
-
-export function types(): NodeJS.ReadableStream {
-	return gulp
-		.src("src/**/*.ts")
-		.pipe(tsProject())
-		.dts.pipe(gulp.dest("types"));
-}
-
-types["description"] = "Generates types";
-
-export function docs(): NodeJS.ReadableStream {
-	return gulp
-		.src("src/**/*.ts")
-		.pipe(gulpTypeDocs(require("./typedoc.json")));
-}
-
-docs["description"] = "Generates docs";
 
 export const compile = gulp.series(prettier, lint, build);
 

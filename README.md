@@ -72,11 +72,11 @@ container.bind("verytallpaper") // or container.bind("verytallpaper", "papers") 
 Resolve it!
 ```ts
 const paper = container.resolve("verytallpaper") // or container.resolve("papers:verytallpaper") if using namespaces
-paper.height // 5
+paper.height // 10
 ```
 If you don't want to inject everything into the container use the create method of container like:
 ```ts
 container.unbind("verytallpaper"); // Or don't bind it at all
 const paper = container.create(VeryTallPaper)
-paper.height // 5
+paper.height // 10
 ```

@@ -72,7 +72,7 @@ export class Container {
 	/**
 	 * Adds a new namespace
 	 * @param name The namespace name
-	 * @param func If provided, uses this function as a namespace resolver
+	 * @param func If provided, uses this object as a namespace resolver
 	 */
 	public addNamespace(name: string, func?: CustomRegistry): void {
 		if (this.registeries.has(name.toLowerCase())) {

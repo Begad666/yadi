@@ -1,0 +1,56 @@
+{
+	"name": "yadi",
+	"version": "1.0.0",
+	"description": "Yet Another Dependency Injection library",
+	"main": "dist/index.js",
+	"repository": "https://github.com/Begad666/yadi",
+	"bugs": {
+		"url": "https://github.com/Begad666/yadi/issues"
+	},
+	"files": [
+		"dist/**/*.js",
+		"types/**/*.d.ts"
+	],
+	"homepage": "https://github.com/Begad666/yadi#readme",
+	"keywords": [
+		"di",
+		"dependency injection",
+		"dependency inversion",
+		"container",
+		"ioc",
+		"inversion of control"
+	],
+	"scripts": {
+		"test": "jest",
+		"build": "gulp",
+		"build:prod": "gulp --prod"
+	},
+	"types": "./types/index.d.ts",
+	"author": "Begad666",
+	"devDependencies": {
+		"@types/gulp": "^4.0.8",
+		"@types/jest": "^26.0.20",
+		"@types/node": "^14.14.22",
+		"@types/yargs": "^16.0.0",
+		"@typescript-eslint/eslint-plugin": "^4.14.1",
+		"@typescript-eslint/parser": "^4.14.1",
+		"eslint": "^7.19.0",
+		"eslint-config-prettier": "^7.2.0",
+		"gulp": "^4.0.2",
+		"gulp-clean": "^0.4.0",
+		"gulp-eslint": "^6.0.0",
+		"gulp-prettier": "^3.0.0",
+		"gulp-sourcemaps": "^3.0.0",
+		"gulp-typedoc": "^2.2.9",
+		"gulp-typescript": "^6.0.0-alpha.1",
+		"jest": "^26.6.3",
+		"prettier": "2.2.1",
+		"reflect-metadata": "^0.1.13",
+		"ts-jest": "^26.5.1",
+		"ts-node": "^9.1.1",
+		"typedoc": "^0.20.23",
+		"typescript": "^4.1.3",
+		"yargs": "^16.2.0"
+	},
+	"license": "MIT"
+}

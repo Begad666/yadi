@@ -1,0 +1,33 @@
+{
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"moduleResolution": "Node",
+		"sourceMap": true,
+		"downlevelIteration": true,
+		"target": "ES5",
+		"forceConsistentCasingInFileNames": true,
+		"pretty": true,
+		"skipLibCheck": true,
+		"experimentalDecorators": true,
+		"lib": [
+			"es6",
+			"dom"
+		],
+		"types": [
+			"reflect-metadata",
+			"jest"
+		]
+	},
+	"exclude": [
+		"node_modules"
+	],
+	"typeAcquisition": {
+		"enable": true
+	},
+	"include": [
+		"src",
+		"tests"
+	]
+}

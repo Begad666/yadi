@@ -82,17 +82,17 @@ var Container = (function () {
             }
             resolve.shift();
             if (resolve.length !== 1) {
-                throw new Error("Invalid resolve string");
+                throw new Error("Invalid injection string");
             }
             var value = customRegistry.getter(resolve.join(""));
             if (typeof value === "undefined") {
-                throw new Error("Invalid resolve dependency");
+                throw new Error("Invalid dependency");
             }
             return value;
         }
         resolve.shift();
         if (resolve.length !== 1) {
-            throw new Error("Invalid resolve string");
+            throw new Error("Invalid injection string");
         }
         return namespace.resolve(resolve.join(""));
     };

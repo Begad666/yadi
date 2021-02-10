@@ -6,7 +6,7 @@ export declare class Registry {
     bind<I>(name: string, safe?: boolean): BindObject<I>;
     unbind(name: string): void;
     rebind<I>(name: string, safe?: boolean): BindObject<I>;
-    resolve(resolveString: string): unknown;
+    resolve(dependency: string): unknown;
     get empty(): boolean;
 }
 export declare type BindObject<I> = {

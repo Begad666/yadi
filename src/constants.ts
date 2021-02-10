@@ -1,6 +1,6 @@
 export const NO_NAMESPACE = "__no_namespace__";
 
-export const MAIN_KEY = "di:";
+export const MAIN_KEY = "yadi:";
 
 export const INJECTION = "injection:";
 

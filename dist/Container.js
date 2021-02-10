@@ -69,8 +69,8 @@ var Container = (function () {
         }
         this.registeries.delete(name);
     };
-    Container.prototype.resolve = function (resolveString) {
-        var resolve = resolveString.split(":");
+    Container.prototype.resolve = function (injectionEntry) {
+        var resolve = injectionEntry.split(":");
         if (resolve.length < 2) {
             resolve.unshift(constants_1.NO_NAMESPACE.toLowerCase());
         }

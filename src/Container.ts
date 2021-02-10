@@ -82,7 +82,7 @@ export class Container {
 	}
 
 	/**
-	 * Returns a namespace
+	 * Returns a namespace, or undefined if the namespace is custom (e.g. invoked {@link Container.addNamespace} with second parameter)
 	 * @param name The namespace to get
 	 */
 	public getNamespace(name: string): Registry {
@@ -96,6 +96,10 @@ export class Container {
 		return value;
 	}
 
+	/**
+	 * Removes a custom namespace if the {@link CustomRegistry.canBeRemoved | canBeRemoved} function returns true or a native one if its not empty
+	 * @param name The namespace to remove
+	 */
 	public removeNamespace(name: string): void {
 		if (name.toLowerCase() === NO_NAMESPACE.toLowerCase()) {
 			throw new Error("Default namespace cant be removed");
@@ -114,11 +118,11 @@ export class Container {
 	}
 
 	/**
-	 * Resolves a resolve string
-	 * @param resolveString A resolve string (e.g. "house:SmallHouse")
+	 * Resolves a injection entry
+	 * @param injectionEntry An injection entry (e.g. "house:SmallHouse")
 	 */
-	public resolve(resolveString: string): unknown {
-		const resolve = resolveString.split(":");
+	public resolve(injectionEntry: string): unknown {
+		const resolve = injectionEntry.split(":");
 		if (resolve.length < 2) {
 			resolve.unshift(NO_NAMESPACE.toLowerCase());
 		}

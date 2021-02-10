@@ -9,6 +9,6 @@ export declare class Container {
     addNamespace(name: string, func?: CustomRegistry): void;
     getNamespace(name: string): Registry;
     removeNamespace(name: string): void;
-    resolve(resolveString: string): unknown;
+    resolve(injectionEntry: string): unknown;
     create<I>(clazz: Class<I>, parameters?: unknown[]): I;
 }

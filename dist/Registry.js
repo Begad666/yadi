@@ -140,10 +140,10 @@ var Registry = (function () {
         this.unbind(name);
         return this.bind(name, safe);
     };
-    Registry.prototype.resolve = function (resolveString) {
-        var interfacee = this.interfaces.get(resolveString);
+    Registry.prototype.resolve = function (dependency) {
+        var interfacee = this.interfaces.get(dependency);
         if (!interfacee) {
-            throw new Error("Invalid resolve dependency");
+            throw new Error("Invalid dependency");
         }
         switch (interfacee.implementation.type) {
             case "class": {

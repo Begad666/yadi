@@ -155,12 +155,12 @@ export class Registry {
 	}
 	/**
 	 * Resolves a dependency
-	 * @param resolveString A dependency name (e.g. "SmallHouse")
+	 * @param dependency A dependency name (e.g. "SmallHouse")
 	 */
-	public resolve(resolveString: string): unknown {
-		const interfacee = this.interfaces.get(resolveString);
+	public resolve(dependency: string): unknown {
+		const interfacee = this.interfaces.get(dependency);
 		if (!interfacee) {
-			throw new Error("Invalid resolve dependency");
+			throw new Error("Invalid dependency");
 		}
 		switch (interfacee.implementation.type) {
 			case "class": {

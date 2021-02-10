@@ -20,13 +20,12 @@ function inject(name, namespace) {
             }
         }
         else {
-            var wanted = target.constructor !== Function ? target.constructor : target;
-            if (Reflect.hasMetadata(constants_1.MAIN_KEY + constants_1.INJECTION + constants_1.CONSTRUCTOR_INJECT, wanted)) {
-                injections = Reflect.getMetadata(constants_1.MAIN_KEY + constants_1.INJECTION + constants_1.CONSTRUCTOR_INJECT, wanted);
+            if (Reflect.hasMetadata(constants_1.MAIN_KEY + constants_1.INJECTION + constants_1.CONSTRUCTOR_INJECT, target)) {
+                injections = Reflect.getMetadata(constants_1.MAIN_KEY + constants_1.INJECTION + constants_1.CONSTRUCTOR_INJECT, target);
             }
             else {
                 injections = new Map();
-                Reflect.defineMetadata(constants_1.MAIN_KEY + constants_1.INJECTION + constants_1.CONSTRUCTOR_INJECT, injections, wanted);
+                Reflect.defineMetadata(constants_1.MAIN_KEY + constants_1.INJECTION + constants_1.CONSTRUCTOR_INJECT, injections, target);
             }
         }
         injections.set(index !== null && index !== void 0 ? index : key, injectionValue);

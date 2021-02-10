@@ -6,7 +6,7 @@ import {
 	AFTER_CONSTRUCT,
 } from "./constants";
 /**
- * A decorator to add an injection entry for namespace:name. Can be used on parameters or properties
+ * A decorator to add an injection entry. Can be used on parameters or properties
  * @param name The dependency name
  * @param namespace The namespace
  */
@@ -47,24 +47,22 @@ export function inject(
 				);
 			}
 		} else {
-			const wanted =
-				target.constructor !== Function ? target.constructor : target;
 			if (
 				Reflect.hasMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
-					wanted
+					target
 				)
 			) {
 				injections = Reflect.getMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
-					wanted
+					target
 				) as Map<number, string>;
 			} else {
 				injections = new Map();
 				Reflect.defineMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
 					injections,
-					wanted
+					target
 				);
 			}
 		}
@@ -127,7 +125,7 @@ export function lazyInject(
 }
 
 /**
- * Decorates a method to be called after constructing the class using {@link Container#create}
+ * Decorates a method to be called after constructing the class using {@link Container.create}
  */
 export function afterConstruct(): (
 	target: unknown,

@@ -124,7 +124,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L14">Container.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L14">Container.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -145,7 +145,7 @@
 					<div class="tsd-signature tsd-kind-icon">registeries<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="../modules.html#registryunion" class="tsd-signature-type" data-tsd-kind="Type alias">RegistryUnion</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L14">Container.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L14">Container.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -162,7 +162,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L77">Container.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L77">Container.ts:77</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -199,7 +199,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L28">Container.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L28">Container.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +245,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L156">Container.ts:156</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L160">Container.ts:160</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -291,12 +291,12 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L88">Container.ts:88</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L88">Container.ts:88</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Returns a namespace</p>
+									<p>Returns a namespace, or undefined if the namespace is custom (e.g. invoked <a href="container.html#addnamespace">Container.addNamespace</a> with second parameter)</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -322,7 +322,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L63">Container.ts:63</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L63">Container.ts:63</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -368,13 +368,21 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L99">Container.ts:99</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L103">Container.ts:103</a></li>
 								</ul>
 							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Removes a custom namespace if the <a href="../interfaces/customregistry.html#canberemoved">canBeRemoved</a> function returns true or a native one if its not empty</p>
+								</div>
+							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
 									<h5>name: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The namespace to remove</p>
+									</div>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -385,26 +393,26 @@
 					<a name="resolve" class="tsd-anchor"></a>
 					<h3>resolve</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">resolve<span class="tsd-signature-symbol">(</span>resolveString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
+						<li class="tsd-signature tsd-kind-icon">resolve<span class="tsd-signature-symbol">(</span>injectionEntry<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">unknown</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L120">Container.ts:120</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L124">Container.ts:124</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Resolves a resolve string</p>
+									<p>Resolves a injection entry</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>resolveString: <span class="tsd-signature-type">string</span></h5>
+									<h5>injectionEntry: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>A resolve string (e.g. &quot;house:SmallHouse&quot;)</p>
+										<p>An injection entry (e.g. &quot;house:SmallHouse&quot;)</p>
 									</div>
 								</li>
 							</ul>
@@ -422,7 +430,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/6bba9ab/src/Container.ts#L47">Container.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/0bbc63e/src/Container.ts#L47">Container.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">

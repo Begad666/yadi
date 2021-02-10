@@ -13,7 +13,7 @@ import {
 export function inject(
 	name?: string,
 	namespace?: string
-): (target: unknown, key: string | symbol, index?: number) => void {
+): PropertyDecorator & ParameterDecorator {
 	namespace = namespace?.toLowerCase();
 	return function (
 		target: unknown,
@@ -76,11 +76,7 @@ export function inject(
  */
 export function bindLazyInject(
 	container: import("./Container").Container
-): (
-	name?: string,
-	namespace?: string,
-	cache?: boolean
-) => (target: unknown, key: string | symbol) => void {
+): (name?: string, namespace?: string, cache?: boolean) => PropertyDecorator {
 	return lazyInject.bind(this, container);
 }
 
@@ -96,7 +92,7 @@ export function lazyInject(
 	name?: string,
 	namespace?: string,
 	cache = true
-): (target: unknown, key: string | symbol) => void {
+): PropertyDecorator {
 	return function (target: unknown, key: string | symbol) {
 		const injectionValue = `${namespace ? namespace + ":" : ""}${
 			name ?? key.toString()
@@ -127,10 +123,7 @@ export function lazyInject(
 /**
  * Decorates a method to be called after constructing the class using {@link Container.create}
  */
-export function afterConstruct(): (
-	target: unknown,
-	key: string | symbol
-) => void {
+export function afterConstruct(): PropertyDecorator {
 	return function (target: unknown, key: string | symbol) {
 		Reflect.defineMetadata(
 			MAIN_KEY + INJECTION + AFTER_CONSTRUCT,

@@ -1,6 +1,6 @@
 {
 	"name": "yadi",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "Yet Another Dependency Injection library",
 	"main": "dist/index.js",
 	"repository": "https://github.com/Begad666/yadi",

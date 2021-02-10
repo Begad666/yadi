@@ -23,7 +23,7 @@ describe("Container", () => {
 			expect(container.getNamespace("test")).toEqual(undefined);
 			expect(container.resolve("test:test")).toEqual(1);
 			expect(() => container.resolve("test:test1")).toThrow(
-				"Invalid resolve dependency"
+				"Invalid dependency"
 			);
 		});
 
@@ -75,7 +75,7 @@ describe("Container", () => {
 			container.bind("test").toConstantValue(1);
 			container.unbind("test");
 			expect(() => container.resolve("test")).toThrow(
-				"Invalid resolve dependency"
+				"Invalid dependency"
 			);
 		});
 

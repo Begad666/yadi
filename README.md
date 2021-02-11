@@ -80,3 +80,5 @@ container.unbind("verytallpaper"); // Or don't bind it at all
 const paper = container.create(VeryTallPaper)
 paper.height // 10
 ```
+## API Docs
+The API docs is available at https://begad666.github.com/yadi

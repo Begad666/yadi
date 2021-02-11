@@ -1,3 +1,6 @@
 export * from "./Container";
-export * from "./Registry";
+export * from "./Namespace";
 export * from "./decorators";
+// export * from "./constants";
+// export * from "./resolver";
+// export * from "./utils";

@@ -4,7 +4,7 @@ export interface Class<T = unknown, A = unknown> {
 
 export interface Interface {
 	name: string;
-	implementation: Implementation;
+	implementations: Implementation[];
 }
 
 export type Implementation =
@@ -33,10 +33,23 @@ export interface ClassImplementation extends BaseImplementation {
 
 export interface BaseImplementation {
 	type: string;
+	attributes?: ImplementationAttributes;
 }
 
-export function isNativeRegistry(
-	registry: import("./Registry").RegistryUnion
-): registry is import("./Registry").Registry {
-	return !("getter" in registry && "canBeRemoved" in registry);
+export interface ImplementationAttributes {
+	subName?: string;
+	tags?: Set<string>;
+}
+
+export interface Injection {
+	namespace: string;
+	name: string;
+	filter: import("./Namespace").Filter;
+	array: boolean;
+}
+
+export function isNativeNamespace(
+	namespace: import("./Namespace").NamespaceUnion
+): namespace is import("./Namespace").Namespace {
+	return !("getter" in namespace && "canBeRemoved" in namespace);
 }

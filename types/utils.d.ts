@@ -3,7 +3,7 @@ export interface Class<T = unknown, A = unknown> {
 }
 export interface Interface {
     name: string;
-    implementation: Implementation;
+    implementations: Implementation[];
 }
 export declare type Implementation = ClassImplementation | DynamicValueImplementation | ConstantValueImplementation;
 export interface DynamicValueImplementation extends BaseImplementation {
@@ -24,5 +24,16 @@ export interface ClassImplementation extends BaseImplementation {
 }
 export interface BaseImplementation {
     type: string;
+    attributes?: ImplementationAttributes;
 }
-export declare function isNativeRegistry(registry: import("./Registry").RegistryUnion): registry is import("./Registry").Registry;
+export interface ImplementationAttributes {
+    subName?: string;
+    tags?: Set<string>;
+}
+export interface Injection {
+    namespace: string;
+    name: string;
+    filter: import("./Namespace").Filter;
+    array: boolean;
+}
+export declare function isNativeNamespace(namespace: import("./Namespace").NamespaceUnion): namespace is import("./Namespace").Namespace;

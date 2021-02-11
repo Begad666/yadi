@@ -1,3 +1,3 @@
 export * from "./Container";
-export * from "./Registry";
+export * from "./Namespace";
 export * from "./decorators";

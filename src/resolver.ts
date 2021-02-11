@@ -5,7 +5,7 @@ import {
 	CONSTRUCTOR_INJECT,
 	AFTER_CONSTRUCT,
 } from "./constants";
-import { Class } from "./utils";
+import { Class, Implementation, Injection } from "./utils";
 
 export function resolveConstructorDeps(
 	constructor: Class,
@@ -14,14 +14,19 @@ export function resolveConstructorDeps(
 	const constructorDeps = Reflect.getMetadata(
 		MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
 		constructor
-	) as Map<number, string>;
+	) as Map<number, Injection>;
 	if (!constructorDeps) {
 		return undefined;
 	} else {
 		const deps = [...constructorDeps.entries()];
 		const parameters = new Array<unknown>(deps.length);
 		for (const [index, injection] of deps) {
-			const value = container.resolve(injection);
+			const value = container.resolve(
+				(injection.namespace ? injection.namespace + ":" : "") +
+					injection.name,
+				injection.filter,
+				injection.array
+			);
 			parameters[index] = value;
 		}
 		return parameters;
@@ -35,21 +40,26 @@ export function resolvePropertyDeps(
 	const propertyDeps = Reflect.getMetadata(
 		MAIN_KEY + INJECTION + PROPERTY_INJECT,
 		constructor
-	) as Map<string, string>;
+	) as Map<string, Injection>;
 	if (!propertyDeps) {
 		return undefined;
 	} else {
 		const deps = [...propertyDeps.entries()];
 		const properties = new Map<string | symbol, unknown>();
 		for (const [property, injection] of deps) {
-			const value = container.resolve(injection);
+			const value = container.resolve(
+				(injection.namespace ? injection.namespace + ":" : "") +
+					injection.name,
+				injection.filter,
+				injection.array
+			);
 			properties.set(property, value);
 		}
 		return properties;
 	}
 }
 
-export function resolve<I>(
+export function resolveClass<I>(
 	constructor: Class<I>,
 	container: import("./Container").Container,
 	additonalParameters: unknown[]
@@ -76,4 +86,26 @@ export function resolve<I>(
 		]();
 	}
 	return instance;
+}
+
+export function resolveImplementations(
+	implementations: Implementation[],
+	filter: import("./Namespace").Filter
+): Implementation[] {
+	if (!filter) {
+		return implementations;
+	}
+	return implementations.filter((v) => {
+		if ("subName" in filter && "subName" in v.attributes) {
+			if (!(v.attributes.subName === filter.subName)) {
+				return false;
+			}
+		}
+		if ("tags" in filter && "tags" in v.attributes) {
+			if (filter.tags.some((tag) => !v.attributes.tags.has(tag))) {
+				return false;
+			}
+		}
+		return true;
+	});
 }

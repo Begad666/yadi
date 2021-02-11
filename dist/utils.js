@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isNativeRegistry = void 0;
-function isNativeRegistry(registry) {
-    return !("getter" in registry && "canBeRemoved" in registry);
+exports.isNativeNamespace = void 0;
+function isNativeNamespace(namespace) {
+    return !("getter" in namespace && "canBeRemoved" in namespace);
 }
-exports.isNativeRegistry = isNativeRegistry;
+exports.isNativeNamespace = isNativeNamespace;

@@ -5,14 +5,19 @@ import {
 	CONSTRUCTOR_INJECT,
 	AFTER_CONSTRUCT,
 } from "./constants";
+import { Injection } from "./utils";
 /**
  * A decorator to add an injection entry. Can be used on parameters or properties
  * @param name The dependency name
  * @param namespace The namespace
+ * @param filter Filter property
+ * @param array Inject arrays
  */
 export function inject(
 	name?: string,
-	namespace?: string
+	namespace?: string,
+	filter?: import("./Namespace").Filter,
+	array?: boolean
 ): PropertyDecorator & ParameterDecorator {
 	namespace = namespace?.toLowerCase();
 	return function (
@@ -23,10 +28,7 @@ export function inject(
 		if (index && !key) {
 			throw new Error("Parameter injection without name");
 		}
-		const injectionValue = `${namespace ? namespace + ":" : ""}${
-			name ?? key.toString()
-		}`;
-		let injections: Map<string | number | symbol, string>;
+		let injections: Map<string | number | symbol, Injection>;
 		if (typeof index === "undefined") {
 			if (
 				Reflect.hasMetadata(
@@ -37,7 +39,7 @@ export function inject(
 				injections = Reflect.getMetadata(
 					MAIN_KEY + INJECTION + PROPERTY_INJECT,
 					target.constructor
-				) as Map<string | symbol, string>;
+				) as Map<string | symbol, Injection>;
 			} else {
 				injections = new Map();
 				Reflect.defineMetadata(
@@ -56,7 +58,7 @@ export function inject(
 				injections = Reflect.getMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
 					target
-				) as Map<number, string>;
+				) as Map<number, Injection>;
 			} else {
 				injections = new Map();
 				Reflect.defineMetadata(
@@ -66,7 +68,12 @@ export function inject(
 				);
 			}
 		}
-		injections.set(index ?? key, injectionValue);
+		injections.set(index ?? key, {
+			name: name ?? key.toString(),
+			namespace,
+			filter,
+			array,
+		});
 	};
 }
 
@@ -76,7 +83,12 @@ export function inject(
  */
 export function bindLazyInject(
 	container: import("./Container").Container
-): (name?: string, namespace?: string, cache?: boolean) => PropertyDecorator {
+): (
+	name?: string,
+	namespace?: string,
+	filter?: import("./Namespace").Filter,
+	cache?: boolean
+) => PropertyDecorator {
 	return lazyInject.bind(this, container);
 }
 
@@ -85,12 +97,16 @@ export function bindLazyInject(
  * @param container The container to use
  * @param name The dependency name
  * @param namespace The namespace
+ * @param filter Filter object
+ * @param array Inject arrays
  * @param cache Cache return values, can be invalidated by setting the property to undefined
  */
 export function lazyInject(
 	container: import("./Container").Container,
 	name?: string,
 	namespace?: string,
+	filter?: import("./Namespace").Filter,
+	array?: boolean,
 	cache = true
 ): PropertyDecorator {
 	return function (target: unknown, key: string | symbol) {
@@ -102,7 +118,7 @@ export function lazyInject(
 			if (cached) {
 				return cached;
 			}
-			const v = container.resolve(injectionValue);
+			const v = container.resolve(injectionValue, filter, array);
 			if (cache) {
 				cached = v;
 			}

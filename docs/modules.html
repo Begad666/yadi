@@ -65,20 +65,23 @@
 							<h3>Classes</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-class"><a href="classes/container.html" class="tsd-kind-icon">Container</a></li>
-								<li class="tsd-kind-class"><a href="classes/registry.html" class="tsd-kind-icon">Registry</a></li>
+								<li class="tsd-kind-class"><a href="classes/namespace.html" class="tsd-kind-icon">Namespace</a></li>
+								<li class="tsd-kind-class tsd-has-type-parameter"><a href="classes/toobject.html" class="tsd-kind-icon">To<wbr>Object</a></li>
+								<li class="tsd-kind-class"><a href="classes/withobject.html" class="tsd-kind-icon">With<wbr>Object</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface"><a href="interfaces/customregistry.html" class="tsd-kind-icon">Custom<wbr>Registry</a></li>
+								<li class="tsd-kind-interface"><a href="interfaces/customnamespace.html" class="tsd-kind-icon">Custom<wbr>Namespace</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#bindobject" class="tsd-kind-icon">Bind<wbr>Object</a></li>
-								<li class="tsd-kind-type-alias"><a href="modules.html#registryunion" class="tsd-kind-icon">Registry<wbr>Union</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#containeroptions" class="tsd-kind-icon">Container<wbr>Options</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#filter" class="tsd-kind-icon">Filter</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#namespaceunion" class="tsd-kind-icon">Namespace<wbr>Union</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -95,162 +98,98 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
-					<a name="bindobject" class="tsd-anchor"></a>
-					<h3>Bind<wbr>Object</h3>
-					<div class="tsd-signature tsd-kind-icon">Bind<wbr>Object&lt;I&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>toConstantValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">; </span>toDynamicValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">; </span>toEmpty<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">; </span>toImplementation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>impl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Class</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span>, singleton<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> }</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="containeroptions" class="tsd-anchor"></a>
+					<h3>Container<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">Container<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>resolveChildren<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>resolveParent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Begad666/yadi/blob/f757a28/src/Registry.ts#L203">Registry.ts:203</a></li>
+							<li>Defined in <a href="https://github.com/Begad666/yadi/blob/master/src/Container.ts#L343">Container.ts:343</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Bind object returned by <a href="classes/registry.html#bind">Registry.bind</a></p>
+							<p>Options for <a href="classes/container.html">Container</a></p>
 						</div>
 					</div>
-					<h4 class="tsd-type-parameters-title">Type parameters</h4>
-					<ul class="tsd-type-parameters">
-						<li>
-							<h4>I</h4>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Type parameter that specifies parameter types</p>
-								</div>
-							</div>
-						</li>
-					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter">
-								<h5>to<wbr>Constant<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+								<h5>resolve<wbr>Children<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>Binds the dependency to a constant value</p>
+										<p>If the container cant resolve a dependency and it has children, should it check them in order until it finds one?</p>
 									</div>
 								</div>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>value: <span class="tsd-signature-type">I</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
 							</li>
 							<li class="tsd-parameter">
-								<h5>to<wbr>Dynamic<wbr>Value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
+								<h5>resolve<wbr>Parent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>Binds the dependency to a dynamic value</p>
+										<p>If the container cant resolve a dependency and it has a parent, should it check the parent?</p>
 									</div>
 								</div>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>value: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">I</span></h5>
-														<ul class="tsd-parameters">
-															<li class="tsd-parameter-signature">
-																<ul class="tsd-signatures tsd-kind-type-literal">
-																	<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">I</span></li>
-																</ul>
-																<ul class="tsd-descriptions">
-																	<li class="tsd-description">
-																		<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">I</span></h4>
-																	</li>
-																</ul>
-															</li>
-														</ul>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li class="tsd-parameter">
-								<h5>to<wbr>Empty<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>Binds the dependency to be binded using the safe parameter</p>
-									</div>
-								</div>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li class="tsd-parameter">
-								<h5>to<wbr>Implementation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>impl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Class</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span>, singleton<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<div class="lead">
-										<p>Binds the dependency to a class</p>
-									</div>
-								</div>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-signature">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-literal">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>impl<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Class</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span>, singleton<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>impl: <span class="tsd-signature-type">Class</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">I</span><span class="tsd-signature-symbol">&gt;</span></h5>
-													</li>
-													<li>
-														<h5><span class="tsd-flag ts-flagOptional">Optional</span> singleton: <span class="tsd-signature-type">boolean</span></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
 							</li>
 						</ul>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
-					<a name="registryunion" class="tsd-anchor"></a>
-					<h3>Registry<wbr>Union</h3>
-					<div class="tsd-signature tsd-kind-icon">Registry<wbr>Union<span class="tsd-signature-symbol">:</span> <a href="classes/registry.html" class="tsd-signature-type" data-tsd-kind="Class">Registry</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/customregistry.html" class="tsd-signature-type" data-tsd-kind="Interface">CustomRegistry</a></div>
+					<a name="filter" class="tsd-anchor"></a>
+					<h3>Filter</h3>
+					<div class="tsd-signature tsd-kind-icon">Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>arrayMaxSize<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>subName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>tags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/Begad666/yadi/blob/f757a28/src/Registry.ts#L224">Registry.ts:224</a></li>
+							<li>Defined in Namespace.ts:177</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>An union that specifies <a href="classes/registry.html">Registry</a> and {@link RegistryGetter}</p>
+							<p>Used by <a href="classes/namespace.html#resolve">Namespace.resolve</a> to filter implementations</p>
+						</div>
+					</div>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> array<wbr>Max<wbr>Size<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>If used with array: true with <a href="classes/namespace.html#resolve">Namespace.resolve</a> or <a href="classes/container.html#resolve">Container.resolve</a>, will limit the amount the array provides</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> sub<wbr>Name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Filter by subName</p>
+									</div>
+								</div>
+							</li>
+							<li class="tsd-parameter">
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> tags<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>Filter by tags</p>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="namespaceunion" class="tsd-anchor"></a>
+					<h3>Namespace<wbr>Union</h3>
+					<div class="tsd-signature tsd-kind-icon">Namespace<wbr>Union<span class="tsd-signature-symbol">:</span> <a href="classes/namespace.html" class="tsd-signature-type" data-tsd-kind="Class">Namespace</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/customnamespace.html" class="tsd-signature-type" data-tsd-kind="Interface">CustomNamespace</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Namespace.ts:194</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>An union that specifies <a href="classes/namespace.html">Namespace</a> and <a href="interfaces/customnamespace.html">CustomNamespace</a></p>
 						</div>
 					</div>
 				</section>
@@ -267,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/f757a28/src/decorators.ts#L126">decorators.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/master/src/decorators.ts#L142">decorators.ts:142</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,13 +222,13 @@
 					<a name="bindlazyinject" class="tsd-anchor"></a>
 					<h3>bind<wbr>Lazy<wbr>Inject</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">bind<wbr>Lazy<wbr>Inject<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PropertyDecorator</span></li>
+						<li class="tsd-signature tsd-kind-icon">bind<wbr>Lazy<wbr>Inject<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Filter</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PropertyDecorator</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/f757a28/src/decorators.ts#L77">decorators.ts:77</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/master/src/decorators.ts#L84">decorators.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,11 +245,11 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PropertyDecorator</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Filter</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PropertyDecorator</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter-signature">
 									<ul class="tsd-signatures tsd-kind-type-literal">
-										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
+										<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Filter</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
@@ -321,6 +260,9 @@
 												</li>
 												<li>
 													<h5><span class="tsd-flag ts-flagOptional">Optional</span> namespace: <span class="tsd-signature-type">string</span></h5>
+												</li>
+												<li>
+													<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter: <span class="tsd-signature-type">Filter</span></h5>
 												</li>
 												<li>
 													<h5><span class="tsd-flag ts-flagOptional">Optional</span> cache: <span class="tsd-signature-type">boolean</span></h5>
@@ -338,13 +280,13 @@
 					<a name="inject" class="tsd-anchor"></a>
 					<h3>inject</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">inject<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">ParameterDecorator</span></li>
+						<li class="tsd-signature tsd-kind-icon">inject<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Filter</span>, array<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">ParameterDecorator</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/f757a28/src/decorators.ts#L13">decorators.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/master/src/decorators.ts#L16">decorators.ts:16</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -366,6 +308,18 @@
 										<p>The namespace</p>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter: <span class="tsd-signature-type">Filter</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Filter property</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> array: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Inject arrays</p>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">PropertyDecorator</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">ParameterDecorator</span></h4>
 						</li>
@@ -375,13 +329,13 @@
 					<a name="lazyinject" class="tsd-anchor"></a>
 					<h3>lazy<wbr>Inject</h3>
 					<ul class="tsd-signatures tsd-kind-function">
-						<li class="tsd-signature tsd-kind-icon">lazy<wbr>Inject<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span>, name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
+						<li class="tsd-signature tsd-kind-icon">lazy<wbr>Inject<span class="tsd-signature-symbol">(</span>container<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Container</span>, name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, namespace<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, filter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">Filter</span>, array<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span>, cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">PropertyDecorator</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/f757a28/src/decorators.ts#L90">decorators.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/Begad666/yadi/blob/master/src/decorators.ts#L104">decorators.ts:104</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -407,6 +361,18 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> namespace: <span class="tsd-signature-type">string</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The namespace</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filter: <span class="tsd-signature-type">Filter</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Filter object</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> array: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Inject arrays</p>
 									</div>
 								</li>
 								<li>
@@ -436,16 +402,25 @@
 						<a href="classes/container.html" class="tsd-kind-icon">Container</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="classes/registry.html" class="tsd-kind-icon">Registry</a>
+						<a href="classes/namespace.html" class="tsd-kind-icon">Namespace</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/toobject.html" class="tsd-kind-icon">To<wbr>Object</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/withobject.html" class="tsd-kind-icon">With<wbr>Object</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/customregistry.html" class="tsd-kind-icon">Custom<wbr>Registry</a>
-					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
-						<a href="modules.html#bindobject" class="tsd-kind-icon">Bind<wbr>Object</a>
+						<a href="interfaces/customnamespace.html" class="tsd-kind-icon">Custom<wbr>Namespace</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="modules.html#registryunion" class="tsd-kind-icon">Registry<wbr>Union</a>
+						<a href="modules.html#containeroptions" class="tsd-kind-icon">Container<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#filter" class="tsd-kind-icon">Filter</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#namespaceunion" class="tsd-kind-icon">Namespace<wbr>Union</a>
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="modules.html#afterconstruct" class="tsd-kind-icon">after<wbr>Construct</a>
@@ -464,7 +439,7 @@
 		</div>
 	</div>
 </div>
-<footer class="with-border-bottom">
+<footer>
 	<div class="container">
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
@@ -473,17 +448,15 @@
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
 			</ul>
 			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
-<div class="container tsd-generator">
-	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
-</div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
 </body>

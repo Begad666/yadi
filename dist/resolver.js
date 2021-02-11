@@ -31,7 +31,7 @@ var __values = (this && this.__values) || function(o) {
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resolve = exports.resolvePropertyDeps = exports.resolveConstructorDeps = void 0;
+exports.resolveImplementations = exports.resolveClass = exports.resolvePropertyDeps = exports.resolveConstructorDeps = void 0;
 var constants_1 = require("./constants");
 function resolveConstructorDeps(constructor, container) {
     var e_1, _a;
@@ -45,7 +45,8 @@ function resolveConstructorDeps(constructor, container) {
         try {
             for (var deps_1 = __values(deps), deps_1_1 = deps_1.next(); !deps_1_1.done; deps_1_1 = deps_1.next()) {
                 var _b = __read(deps_1_1.value, 2), index = _b[0], injection = _b[1];
-                var value = container.resolve(injection);
+                var value = container.resolve((injection.namespace ? injection.namespace + ":" : "") +
+                    injection.name, injection.filter, injection.array);
                 parameters[index] = value;
             }
         }
@@ -72,7 +73,8 @@ function resolvePropertyDeps(constructor, container) {
         try {
             for (var deps_2 = __values(deps), deps_2_1 = deps_2.next(); !deps_2_1.done; deps_2_1 = deps_2.next()) {
                 var _b = __read(deps_2_1.value, 2), property = _b[0], injection = _b[1];
-                var value = container.resolve(injection);
+                var value = container.resolve((injection.namespace ? injection.namespace + ":" : "") +
+                    injection.name, injection.filter, injection.array);
                 properties.set(property, value);
             }
         }
@@ -87,7 +89,7 @@ function resolvePropertyDeps(constructor, container) {
     }
 }
 exports.resolvePropertyDeps = resolvePropertyDeps;
-function resolve(constructor, container, additonalParameters) {
+function resolveClass(constructor, container, additonalParameters) {
     var e_3, _a;
     var _b;
     var parameters = __spread(((_b = resolveConstructorDeps(constructor, container)) !== null && _b !== void 0 ? _b : []), (additonalParameters !== null && additonalParameters !== void 0 ? additonalParameters : []));
@@ -113,4 +115,23 @@ function resolve(constructor, container, additonalParameters) {
     }
     return instance;
 }
-exports.resolve = resolve;
+exports.resolveClass = resolveClass;
+function resolveImplementations(implementations, filter) {
+    if (!filter) {
+        return implementations;
+    }
+    return implementations.filter(function (v) {
+        if ("subName" in filter && "subName" in v.attributes) {
+            if (!(v.attributes.subName === filter.subName)) {
+                return false;
+            }
+        }
+        if ("tags" in filter && "tags" in v.attributes) {
+            if (filter.tags.some(function (tag) { return !v.attributes.tags.has(tag); })) {
+                return false;
+            }
+        }
+        return true;
+    });
+}
+exports.resolveImplementations = resolveImplementations;

@@ -152,7 +152,7 @@ var Container = (function () {
                         }
                         catch (e) { }
                     }
-                    if (this.options.resolveChildren) {
+                    if (this.options.resolveChildren && this.children) {
                         var returnValue = void 0;
                         try {
                             for (var _d = __values(this.children.values()), _e = _d.next(); !_e.done; _e = _d.next()) {
@@ -194,7 +194,7 @@ var Container = (function () {
                         }
                         catch (e) { }
                     }
-                    if (this.options.resolveChildren) {
+                    if (this.options.resolveChildren && this.children) {
                         var returnValue = void 0;
                         try {
                             for (var _f = __values(this.children.values()), _g = _f.next(); !_g.done; _g = _f.next()) {
@@ -235,7 +235,7 @@ var Container = (function () {
                         }
                         catch (e) { }
                     }
-                    if (this.options.resolveChildren) {
+                    if (this.options.resolveChildren && this.children) {
                         var returnValue = void 0;
                         try {
                             for (var _h = __values(this.children.values()), _j = _h.next(); !_j.done; _j = _h.next()) {

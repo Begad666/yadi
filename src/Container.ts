@@ -211,7 +211,7 @@ export class Container {
 							);
 						} catch (e) {}
 					}
-					if (this.options.resolveChildren) {
+					if (this.options.resolveChildren && this.children) {
 						let returnValue: unknown;
 						for (const container of this.children.values()) {
 							try {
@@ -253,7 +253,7 @@ export class Container {
 							);
 						} catch (e) {}
 					}
-					if (this.options.resolveChildren) {
+					if (this.options.resolveChildren && this.children) {
 						let returnValue: unknown;
 						for (const container of this.children.values()) {
 							try {
@@ -291,7 +291,7 @@ export class Container {
 							);
 						} catch (e) {}
 					}
-					if (this.options.resolveChildren) {
+					if (this.options.resolveChildren && this.children) {
 						let returnValue: unknown;
 						for (const container of this.children.values()) {
 							try {

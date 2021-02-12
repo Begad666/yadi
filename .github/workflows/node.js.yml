@@ -26,11 +26,7 @@ jobs:
               with:
                   path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
                   key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-            - uses: borales/actions-yarn@v2.0.0
-              name: Run yarn install
-              with:
-                  cmd: install
-            - uses: borales/actions-yarn@v2.0.0
-              name: Test
-              with:
-                  cmd: test
+            - name: Install dependencies
+              run: yarn install
+            - name: Test
+              run: yarn test

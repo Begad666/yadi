@@ -180,13 +180,13 @@ export class Container {
 		injectionEntry: string,
 		filter?: Filter,
 		array?: boolean
-	): unknown[];
+	): unknown[] | unknown;
 
 	public resolve(
 		injectionEntry: string,
 		filter?: Filter,
 		array?: boolean
-	): unknown | unknown[] {
+	): unknown[] | unknown {
 		const injection = injectionEntry.split(":");
 		if (injection.length < 2) {
 			injection.unshift(NO_NAMESPACE.toLowerCase());

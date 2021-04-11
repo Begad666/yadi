@@ -16,7 +16,7 @@ export declare class Container {
     getNamespace(name: string): Namespace;
     removeNamespace(name: string): void;
     resolve(injectionEntry: string, filter?: Filter): unknown;
-    resolve(injectionEntry: string, filter?: Filter, array?: boolean): unknown[];
+    resolve(injectionEntry: string, filter?: Filter, array?: boolean): unknown[] | unknown;
     create<I>(clazz: Class<I>, parameters?: unknown[]): I;
     get empty(): boolean;
 }

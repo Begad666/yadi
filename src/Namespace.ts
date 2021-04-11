@@ -70,7 +70,7 @@ export class Namespace {
 		dependency: string,
 		filter?: Filter,
 		array?: boolean
-	): unknown[];
+	): unknown[] | unknown;
 
 	public resolve(
 		dependency: string,

@@ -26,9 +26,10 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Container = void 0;
@@ -268,9 +269,9 @@ var Container = (function () {
     };
     Object.defineProperty(Container.prototype, "empty", {
         get: function () {
-            var namespacesNotEmpty = __spread(this.namespaces.values()).some(function (v) { return !(utils_1.isNativeNamespace(v) ? v.empty : v.canBeRemoved()); });
+            var namespacesNotEmpty = __spreadArray([], __read(this.namespaces.values())).some(function (v) { return !(utils_1.isNativeNamespace(v) ? v.empty : v.canBeRemoved()); });
             var childrenNotEmpty = this.children
-                ? __spread(this.children.values()).some(function (v) { return !v.empty; })
+                ? __spreadArray([], __read(this.children.values())).some(function (v) { return !v.empty; })
                 : false;
             return !(namespacesNotEmpty && childrenNotEmpty);
         },

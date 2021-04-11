@@ -7,7 +7,7 @@ export declare class Namespace {
     unbind(name: string): void;
     rebind<I>(name: string): ToObject<I>;
     resolve(dependency: string, filter?: Filter): unknown;
-    resolve(dependency: string, filter?: Filter, array?: boolean): unknown[];
+    resolve(dependency: string, filter?: Filter, array?: boolean): unknown[] | unknown;
     get empty(): boolean;
 }
 export declare type Filter = {

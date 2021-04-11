@@ -125,9 +125,9 @@
 <span style="color: #000000">    }</span>
 <span style="color: #000000">}</span>
 <span style="color: #001080">container</span><span style="color: #000000">.</span><span style="color: #795E26">bind</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;ruler&quot;</span><span style="color: #000000">)</span>
-<span style="color: #000000">         .</span><span style="color: #795E26">toImplementation</span><span style="color: #000000">(</span><span style="color: #001080">Ruler</span><span style="color: #000000">);</span>
+<span style="color: #000000">         .</span><span style="color: #795E26">toClass</span><span style="color: #000000">(</span><span style="color: #001080">Ruler</span><span style="color: #000000">);</span>
 <span style="color: #001080">container</span><span style="color: #000000">.</span><span style="color: #795E26">bind</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;verytallpaper&quot;</span><span style="color: #000000">) </span><span style="color: #008000">// or container.bind(&quot;verytallpaper&quot;, &quot;papers&quot;) if using namespaces</span>
-<span style="color: #000000">         .</span><span style="color: #795E26">toImplementation</span><span style="color: #000000">(</span><span style="color: #001080">VeryTallPaper</span><span style="color: #000000">);</span>
+<span style="color: #000000">         .</span><span style="color: #795E26">toClass</span><span style="color: #000000">(</span><span style="color: #001080">VeryTallPaper</span><span style="color: #000000">);</span>
 </code></pre>
 				<p>Resolve it!</p>
 				<pre><code class="language-ts"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">paper</span><span style="color: #000000"> = </span><span style="color: #001080">container</span><span style="color: #000000">.</span><span style="color: #795E26">resolve</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;verytallpaper&quot;</span><span style="color: #000000">) </span><span style="color: #008000">// or container.resolve(&quot;papers:verytallpaper&quot;) if using namespaces</span>

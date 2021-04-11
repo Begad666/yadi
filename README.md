@@ -65,9 +65,9 @@ class Ruler {
 	}
 }
 container.bind("ruler")
-		 .toImplementation(Ruler);
+		 .toClass(Ruler);
 container.bind("verytallpaper") // or container.bind("verytallpaper", "papers") if using namespaces
-		 .toImplementation(VeryTallPaper);
+		 .toClass(VeryTallPaper);
 ```
 Resolve it!
 ```ts

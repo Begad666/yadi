@@ -15,9 +15,10 @@ var __read = (this && this.__read) || function (o, n) {
     }
     return ar;
 };
-var __spread = (this && this.__spread) || function () {
-    for (var ar = [], i = 0; i < arguments.length; i++) ar = ar.concat(__read(arguments[i]));
-    return ar;
+var __spreadArray = (this && this.__spreadArray) || function (to, from) {
+    for (var i = 0, il = from.length, j = to.length; i < il; i++, j++)
+        to[j] = from[i];
+    return to;
 };
 var __values = (this && this.__values) || function(o) {
     var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -40,7 +41,7 @@ function resolveConstructorDeps(constructor, container) {
         return undefined;
     }
     else {
-        var deps = __spread(constructorDeps.entries());
+        var deps = __spreadArray([], __read(constructorDeps.entries()));
         var parameters = new Array(deps.length);
         try {
             for (var deps_1 = __values(deps), deps_1_1 = deps_1.next(); !deps_1_1.done; deps_1_1 = deps_1.next()) {
@@ -68,7 +69,7 @@ function resolvePropertyDeps(constructor, container) {
         return undefined;
     }
     else {
-        var deps = __spread(propertyDeps.entries());
+        var deps = __spreadArray([], __read(propertyDeps.entries()));
         var properties = new Map();
         try {
             for (var deps_2 = __values(deps), deps_2_1 = deps_2.next(); !deps_2_1.done; deps_2_1 = deps_2.next()) {
@@ -92,9 +93,9 @@ exports.resolvePropertyDeps = resolvePropertyDeps;
 function resolveClass(constructor, container, additonalParameters) {
     var e_3, _a;
     var _b;
-    var parameters = __spread(((_b = resolveConstructorDeps(constructor, container)) !== null && _b !== void 0 ? _b : []), (additonalParameters !== null && additonalParameters !== void 0 ? additonalParameters : []));
+    var parameters = __spreadArray(__spreadArray([], __read(((_b = resolveConstructorDeps(constructor, container)) !== null && _b !== void 0 ? _b : []))), __read((additonalParameters !== null && additonalParameters !== void 0 ? additonalParameters : [])));
     var properties = resolvePropertyDeps(constructor, container);
-    var instance = new (constructor.bind.apply(constructor, __spread([void 0], parameters)))();
+    var instance = new (constructor.bind.apply(constructor, __spreadArray([void 0], __read(parameters))))();
     if (properties) {
         try {
             for (var _c = __values(properties.entries()), _d = _c.next(); !_d.done; _d = _c.next()) {

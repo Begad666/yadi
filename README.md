@@ -81,4 +81,4 @@ const paper = container.create(VeryTallPaper)
 paper.height // 10
 ```
 ## API Docs
-The API docs is available at https://begad666.github.com/yadi
+The API docs is available at https://begad666.github.io/yadi

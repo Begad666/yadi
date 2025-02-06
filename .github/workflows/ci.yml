@@ -11,7 +11,7 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-
+    name: Check
     steps:
       - uses: actions/checkout@v2
         name: Checkout repository
@@ -27,18 +27,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-1.1.45-bun-
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
       - name: Lint
         run: bun lint
       - name: Format check
         run: bun format:check
   test:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         bun: [1.1.45, latest]
-
+    name: Test (Bun v${{ matrix.bun }})
     steps:
       - uses: actions/checkout@v2
         name: Checkout repository
@@ -54,6 +53,46 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-${{ matrix.bun }}-bun-
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
       - name: Test
         run: bun test
+  release:
+    runs-on: ubuntu-latest
+    needs: 
+      - check
+      - test
+    if: github.repository == 'Begad666/yadi'
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.pages.outputs.page_url }}
+    name: Release
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout repository
+      - uses: actions/configure-pages@v5
+        name: Setup Pages
+      - uses: oven-sh/setup-bun@v2
+        name: Setup Bun
+        with:
+          bun-version: 1.1.45
+      - uses: actions/cache@v4
+        name: Restore Bun install cache
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-1.1.45-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-1.1.45-bun-
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Generate documentation
+        run: bun docs
+      - uses: actions/upload-pages-artifact@v3
+        name: Upload artifact
+        with:
+          path: './docs'
+      - uses: actions/deploy-pages@v4
+        name: Deploy to GitHub Pages
+        id: pages

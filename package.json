@@ -2,14 +2,16 @@
 	"name": "@begad/yadi",
 	"version": "0.0.1",
 	"description": "Yet Another Dependency Injection library",
-	"module": "dist/index.js",
+	"module": "./dist/index.js",
 	"repository": "https://github.com/Begad666/yadi",
 	"bugs": {
 		"url": "https://github.com/Begad666/yadi/issues"
 	},
 	"files": [
 		"dist",
-		"types"
+		"types",
+		"README.md",
+		"LICENSE"
 	],
 	"homepage": "https://github.com/Begad666/yadi#readme",
 	"keywords": [

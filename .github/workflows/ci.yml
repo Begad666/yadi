@@ -1,5 +1,8 @@
 name: CI
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [master]
@@ -24,7 +27,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         name: Setup Bun
         with:
-          bun-version: 1.1.x
+          bun-version: 1.1.45
       - uses: actions/cache@v4
         name: Restore Bun install cache
         with:
@@ -41,7 +44,7 @@ jobs:
 
     strategy:
       matrix:
-        bun: [1.1.x]
+        bun: [1.1.45, latest]
 
     steps:
       - uses: actions/checkout@v2

@@ -10,47 +10,48 @@ import { FlatCompat } from "@eslint/eslintrc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+	baseDirectory: __dirname,
+	recommendedConfig: js.configs.recommended,
+	allConfig: js.configs.all,
 });
 
-export default [{
-    ignores: ["**/node_modules", "**/types", "**/dist"],
-}, ...compat.extends(
-    "plugin:@typescript-eslint/recommended",
-    "prettier",
-), {
-    plugins: {
-        "@typescript-eslint": typescriptEslint,
-    },
+export default [
+	{
+		ignores: ["**/node_modules", "**/types", "**/dist"],
+	},
+	...compat.extends("plugin:@typescript-eslint/recommended", "prettier"),
+	{
+		plugins: {
+			"@typescript-eslint": typescriptEslint,
+		},
 
-    languageOptions: {
-        globals: {
-            ...globals.node,
-        },
+		languageOptions: {
+			globals: {
+				...globals.node,
+			},
 
-        parser: tsParser,
-        ecmaVersion: 11,
-        sourceType: "module",
-    },
+			parser: tsParser,
+			ecmaVersion: 11,
+			sourceType: "module",
+		},
 
-    rules: {
-        "@typescript-eslint/no-var-requires": "off",
-        "@typescript-eslint/no-extra-parens": "off",
-        "no-console": "error",
-        "no-extra-parens": "off",
-        eqeqeq: ["error", "smart"],
-        "array-bracket-spacing": "off",
-        "brace-style": "off",
-        "comma-dangle": "off",
-        "comma-spacing": "off",
-        "comma-style": "off",
-        quotes: "off",
-        indent: "off",
-        semi: "off",
-        "semi-style": "off",
-		"semi-spacing": "off",
-		"@typescript-eslint/no-unused-vars": "warn"
-    },
-}];
+		rules: {
+			"@typescript-eslint/no-var-requires": "off",
+			"@typescript-eslint/no-extra-parens": "off",
+			"no-console": "error",
+			"no-extra-parens": "off",
+			eqeqeq: ["error", "smart"],
+			"array-bracket-spacing": "off",
+			"brace-style": "off",
+			"comma-dangle": "off",
+			"comma-spacing": "off",
+			"comma-style": "off",
+			quotes: "off",
+			indent: "off",
+			semi: "off",
+			"semi-style": "off",
+			"semi-spacing": "off",
+			"@typescript-eslint/no-unused-vars": "warn",
+		},
+	},
+];

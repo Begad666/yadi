@@ -14,23 +14,12 @@
 		"skipLibCheck": true,
 		"experimentalDecorators": true,
 		"declaration": true,
-		"lib": [
-			"es6",
-			"dom"
-		],
-		"types": [
-			"reflect-metadata",
-			"jest"
-		]
+		"lib": ["es6", "dom"],
+		"types": ["reflect-metadata", "jest"]
 	},
-	"exclude": [
-		"node_modules"
-	],
+	"exclude": ["node_modules"],
 	"typeAcquisition": {
 		"enable": true
 	},
-	"include": [
-		"src",
-		"tests"
-	]
+	"include": ["src", "tests"]
 }

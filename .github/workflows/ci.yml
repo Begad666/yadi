@@ -37,7 +37,7 @@ jobs:
     strategy:
       matrix:
         bun: [1.1.45, latest]
-    name: Test (Bun v${{ matrix.bun }})
+    name: Test (Bun ${{ matrix.bun }})
     steps:
       - uses: actions/checkout@v2
         name: Checkout repository

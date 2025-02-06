@@ -1,13 +1,13 @@
-import { NO_NAMESPACE } from "./constants";
+import { NO_NAMESPACE } from "./constants.js";
 import {
 	ToObject,
 	Namespace,
 	NamespaceUnion,
 	CustomNamespace,
 	Filter,
-} from "./Namespace";
-import { resolveClass } from "./resolver";
-import { Class, isNativeNamespace } from "./utils";
+} from "./namespace.js";
+import { resolveClass } from "./resolver.js";
+import { Class, isNativeNamespace } from "./utils.js";
 /**
  * A container manages a map of namespaces
  */
@@ -22,7 +22,7 @@ export class Container {
 	 */
 	public constructor(
 		private options: ContainerOptions,
-		private parent?: Container
+		private parent?: Container,
 	) {
 		this.namespaces.set(NO_NAMESPACE.toLowerCase(), new Namespace(this));
 	}
@@ -78,7 +78,7 @@ export class Container {
 	 */
 	public bind<I>(
 		name: string,
-		namespace: string = NO_NAMESPACE
+		namespace: string = NO_NAMESPACE,
 	): ToObject<I> {
 		const value = this.namespaces.get(namespace.toLowerCase());
 		if (!value) {
@@ -179,13 +179,13 @@ export class Container {
 	public resolve(
 		injectionEntry: string,
 		filter?: Filter,
-		array?: boolean
+		array?: boolean,
 	): unknown[] | unknown;
 
 	public resolve(
 		injectionEntry: string,
 		filter?: Filter,
-		array?: boolean
+		array?: boolean,
 	): unknown[] | unknown {
 		const injection = injectionEntry.split(":");
 		if (injection.length < 2) {
@@ -207,7 +207,7 @@ export class Container {
 							return this.parent.resolve(
 								namespacePart + ":" + dependencyPart,
 								filter,
-								array
+								array,
 							);
 						} catch (e) {}
 					}
@@ -218,7 +218,7 @@ export class Container {
 								returnValue = container.resolve(
 									namespacePart + ":" + dependencyPart,
 									filter,
-									array
+									array,
 								);
 								break;
 							} catch (e) {}
@@ -233,12 +233,16 @@ export class Container {
 		}
 		if (!namespace) {
 			const customNamespace = this.namespaces.get(
-				namespacePart.toLowerCase()
+				namespacePart.toLowerCase(),
 			) as CustomNamespace;
 			if (!customNamespace) {
 				throw new Error("Invalid namespace");
 			}
-			const value = customNamespace.getter(dependencyPart, filter, array);
+			const value = customNamespace.resolve(
+				dependencyPart,
+				filter,
+				array,
+			);
 			if (typeof value === "undefined") {
 				if (
 					this.options.resolveParent ||
@@ -249,7 +253,7 @@ export class Container {
 							return this.parent.resolve(
 								namespacePart + ":" + dependencyPart,
 								filter,
-								array
+								array,
 							);
 						} catch (e) {}
 					}
@@ -260,7 +264,7 @@ export class Container {
 								returnValue = container.resolve(
 									namespacePart + ":" + dependencyPart,
 									filter,
-									array
+									array,
 								);
 								break;
 							} catch (e) {}
@@ -287,7 +291,7 @@ export class Container {
 							return this.parent.resolve(
 								namespacePart + ":" + dependencyPart,
 								filter,
-								array
+								array,
 							);
 						} catch (e) {}
 					}
@@ -298,7 +302,7 @@ export class Container {
 								returnValue = container.resolve(
 									namespacePart + ":" + dependencyPart,
 									filter,
-									array
+									array,
 								);
 								break;
 							} catch (e) {}
@@ -328,7 +332,7 @@ export class Container {
 	 */
 	public get empty(): boolean {
 		const namespacesNotEmpty = [...this.namespaces.values()].some(
-			(v) => !(isNativeNamespace(v) ? v.empty : v.canBeRemoved())
+			(v) => !(isNativeNamespace(v) ? v.empty : v.canBeRemoved()),
 		);
 		const childrenNotEmpty = this.children
 			? [...this.children.values()].some((v) => !v.empty)

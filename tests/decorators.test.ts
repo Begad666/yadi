@@ -5,7 +5,7 @@ import {
 	Container,
 	inject,
 	lazyInject,
-} from "../src";
+} from "../src/index.js";
 
 let container: Container;
 describe("Decorators", () => {
@@ -14,7 +14,7 @@ describe("Decorators", () => {
 			(container = new Container({
 				resolveChildren: false,
 				resolveParent: false,
-			}))
+			})),
 	);
 
 	describe("inject", () => {
@@ -74,7 +74,7 @@ describe("Decorators", () => {
 			class Test {
 				public constructor(
 					@inject("test", undefined, undefined, true)
-					public test: number[]
+					public test: number[],
 				) {}
 			}
 			container.bind("test").toConstantValue(1);

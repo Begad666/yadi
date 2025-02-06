@@ -1,6 +1,6 @@
-export * from "./Container";
-export * from "./Namespace";
-export * from "./decorators";
-// export * from "./constants";
-// export * from "./resolver";
-// export * from "./utils";
+export * from "./container.js";
+export * from "./namespace.js";
+export * from "./decorators.js";
+export * from "./constants.js";
+export * from "./resolver.js";
+export * from "./utils.js";

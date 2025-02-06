@@ -4,8 +4,8 @@ import {
 	MAIN_KEY,
 	CONSTRUCTOR_INJECT,
 	AFTER_CONSTRUCT,
-} from "./constants";
-import { Injection } from "./utils";
+} from "./constants.js";
+import { Injection } from "./utils.js";
 /**
  * A decorator to add an injection entry. Can be used on parameters or properties
  * @param name The dependency name
@@ -16,14 +16,14 @@ import { Injection } from "./utils";
 export function inject(
 	name?: string,
 	namespace?: string,
-	filter?: import("./Namespace").Filter,
-	array?: boolean
+	filter?: import("./namespace.js").Filter,
+	array?: boolean,
 ): PropertyDecorator & ParameterDecorator {
 	namespace = namespace?.toLowerCase();
 	return function (
 		target: unknown,
 		key: string | symbol,
-		index?: number
+		index?: number,
 	): void {
 		if (index && !key) {
 			throw new Error("Parameter injection without name");
@@ -33,38 +33,38 @@ export function inject(
 			if (
 				Reflect.hasMetadata(
 					MAIN_KEY + INJECTION + PROPERTY_INJECT,
-					target.constructor
+					target.constructor,
 				)
 			) {
 				injections = Reflect.getMetadata(
 					MAIN_KEY + INJECTION + PROPERTY_INJECT,
-					target.constructor
+					target.constructor,
 				) as Map<string | symbol, Injection>;
 			} else {
 				injections = new Map();
 				Reflect.defineMetadata(
 					MAIN_KEY + INJECTION + PROPERTY_INJECT,
 					injections,
-					target.constructor
+					target.constructor,
 				);
 			}
 		} else {
 			if (
 				Reflect.hasMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
-					target
+					target,
 				)
 			) {
 				injections = Reflect.getMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
-					target
+					target,
 				) as Map<number, Injection>;
 			} else {
 				injections = new Map();
 				Reflect.defineMetadata(
 					MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
 					injections,
-					target
+					target,
 				);
 			}
 		}
@@ -82,12 +82,12 @@ export function inject(
  * @param container The container to use
  */
 export function bindLazyInject(
-	container: import("./Container").Container
+	container: import("./container.js").Container,
 ): (
 	name?: string,
 	namespace?: string,
-	filter?: import("./Namespace").Filter,
-	cache?: boolean
+	filter?: import("./namespace.js").Filter,
+	cache?: boolean,
 ) => PropertyDecorator {
 	return lazyInject.bind(this, container);
 }
@@ -102,19 +102,19 @@ export function bindLazyInject(
  * @param cache Cache return values, can be invalidated by setting the property to undefined
  */
 export function lazyInject(
-	container: import("./Container").Container,
+	container: import("./container.js").Container,
 	name?: string,
 	namespace?: string,
-	filter?: import("./Namespace").Filter,
+	filter?: import("./namespace.js").Filter,
 	array?: boolean,
-	cache = true
+	cache = true,
 ): PropertyDecorator {
 	return function (target: unknown, key: string | symbol) {
 		const injectionValue = `${namespace ? namespace + ":" : ""}${
 			name ?? key.toString()
 		}`;
 		let cached: unknown;
-		const getter = () => {
+		const resolve = () => {
 			if (cached) {
 				return cached;
 			}
@@ -130,7 +130,7 @@ export function lazyInject(
 		Object.defineProperty(target, key, {
 			configurable: true,
 			enumerable: true,
-			get: getter,
+			get: resolve,
 			set: setter,
 		});
 	};
@@ -144,7 +144,7 @@ export function afterConstruct(): PropertyDecorator {
 		Reflect.defineMetadata(
 			MAIN_KEY + INJECTION + AFTER_CONSTRUCT,
 			key,
-			target.constructor
+			target.constructor,
 		);
 	};
 }

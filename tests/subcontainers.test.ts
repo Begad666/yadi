@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { Container } from "../src";
+import { Container } from "../src/index.js";
 
 let container: Container;
 let container1: Container;
@@ -44,11 +44,11 @@ describe("Sub containers", () => {
 	test("works with custom registries", () => {
 		const v1 = {
 			canBeRemoved: () => true,
-			getter: (dep: string) => (dep !== "test1" ? undefined : 1),
+			resolve: (dep: string) => (dep !== "test1" ? undefined : 1),
 		};
 		const v2 = {
 			canBeRemoved: () => true,
-			getter: (dep: string) => (dep !== "test2" ? undefined : 2),
+			resolve: (dep: string) => (dep !== "test2" ? undefined : 2),
 		};
 		container1.addNamespace("test", v1);
 		container2.addNamespace("test", v2);

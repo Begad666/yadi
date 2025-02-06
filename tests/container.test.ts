@@ -1,6 +1,6 @@
 import "reflect-metadata";
-import { Container } from "../src";
-import { NO_NAMESPACE } from "../src/constants";
+import { Container } from "../src/index.js";
+import { NO_NAMESPACE } from "../src/constants.js";
 
 let container: Container;
 
@@ -10,7 +10,7 @@ describe("Container", () => {
 			(container = new Container({
 				resolveChildren: false,
 				resolveParent: false,
-			}))
+			})),
 	);
 
 	describe("namespaces", () => {
@@ -22,23 +22,23 @@ describe("Container", () => {
 		test("addNamespace with a function", () => {
 			const v = {
 				canBeRemoved: () => true,
-				getter: (service: string) =>
+				resolve: (service: string) =>
 					service === "test" ? 1 : undefined,
 			};
 			container.addNamespace("test", v);
 			expect(container.getNamespace("test")).toBeUndefined();
 			expect(container.resolve("test:test")).toBe(1);
 			expect(() => container.resolve("test:test1")).toThrow(
-				"Invalid dependency"
+				"Invalid dependency",
 			);
 		});
 
 		test("getNamespace and resolve throw if a container doesn't have a certain namespace", () => {
 			expect(() => container.getNamespace("test")).toThrow(
-				"Invalid namespace"
+				"Invalid namespace",
 			);
 			expect(() => container.resolve("test:test")).toThrow(
-				"Invalid namespace"
+				"Invalid namespace",
 			);
 		});
 
@@ -46,25 +46,25 @@ describe("Container", () => {
 			container.addNamespace("test");
 			container.removeNamespace("test");
 			expect(() => container.getNamespace("test")).toThrow(
-				"Invalid namespace"
+				"Invalid namespace",
 			);
 		});
 
 		test("removeNamespace with a function namespace", () => {
 			container.addNamespace("test", {
 				canBeRemoved: () => false,
-				getter: undefined,
+				resolve: undefined,
 			});
 
 			expect(() => container.removeNamespace("test")).toThrow(
-				"Namespace not empty"
+				"Namespace not empty",
 			);
 		});
 
 		test("removeNamespace with a function namespace allowing removes", () => {
 			container.addNamespace("test", {
 				canBeRemoved: () => true,
-				getter: undefined,
+				resolve: undefined,
 			});
 
 			expect(() => container.removeNamespace("test")).not.toThrow();
@@ -76,7 +76,7 @@ describe("Container", () => {
 			container.bind("test", "test").toConstantValue(1);
 
 			expect(() => container.removeNamespace("test")).toThrow(
-				"Namespace not empty"
+				"Namespace not empty",
 			);
 		});
 	});
@@ -91,7 +91,7 @@ describe("Container", () => {
 			const bindObject = container.bind("test");
 			bindObject.toConstantValue(1);
 			expect(() => bindObject.toDynamicValue(() => 2)).toThrow(
-				"Already bound"
+				"Already bound",
 			);
 		});
 
@@ -99,7 +99,7 @@ describe("Container", () => {
 			container.bind("test").toConstantValue(1);
 			container.unbind("test");
 			expect(() => container.resolve("test")).toThrow(
-				"Invalid dependency"
+				"Invalid dependency",
 			);
 		});
 
@@ -107,7 +107,7 @@ describe("Container", () => {
 			container.bind("test").toConstantValue(1);
 			container.rebind("test").toConstantValue(2);
 			expect(container.getNamespace(NO_NAMESPACE).resolve("test")).toBe(
-				2
+				2,
 			);
 		});
 	});
@@ -120,7 +120,7 @@ describe("Container", () => {
 					container
 						.getNamespace(NO_NAMESPACE)
 						["interfaces"].get("test").implementations[0].attributes
-						.subName
+						.subName,
 				).toEqual("test1");
 			});
 
@@ -129,7 +129,8 @@ describe("Container", () => {
 				expect(
 					container
 						.getNamespace(NO_NAMESPACE)
-						["interfaces"].get("test").implementations[0].attributes
+						["interfaces"].get("test").implementations[0]
+						.attributes,
 				).toBeUndefined();
 			});
 		});
@@ -139,7 +140,7 @@ describe("Container", () => {
 				container.bind("test").toConstantValue(2).withSubName("test2");
 				container.bind("test").toConstantValue(1).withSubName("test1");
 				expect(container.resolve("test", { subName: "test1" })).toEqual(
-					1
+					1,
 				);
 			});
 		});
@@ -150,7 +151,7 @@ describe("Container", () => {
 			container.bind("test").toConstantValue(2).withSubName("test");
 			container.bind("test").toConstantValue(3).withSubName("test");
 			expect(
-				container.resolve("test", { subName: "test" }, true)
+				container.resolve("test", { subName: "test" }, true),
 			).toEqual([1, 2, 3]);
 		});
 		test("filter works", () => {
@@ -161,8 +162,8 @@ describe("Container", () => {
 				container.resolve(
 					"test",
 					{ subName: "test", arrayMaxSize: 2 },
-					true
-				)
+					true,
+				),
 			).toEqual([1, 2]);
 		});
 	});

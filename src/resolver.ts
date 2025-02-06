@@ -4,16 +4,19 @@ import {
 	PROPERTY_INJECT,
 	CONSTRUCTOR_INJECT,
 	AFTER_CONSTRUCT,
-} from "./constants";
-import { Class, Implementation, Injection } from "./utils";
+} from "./constants.js";
+import { Class, Implementation, Injection } from "./utils.js";
 
+/**
+ * @private
+ */
 export function resolveConstructorDeps(
 	constructor: Class,
-	container: import("./Container").Container
+	container: import("./container.js").Container,
 ): Array<unknown> {
 	const constructorDeps = Reflect.getMetadata(
 		MAIN_KEY + INJECTION + CONSTRUCTOR_INJECT,
-		constructor
+		constructor,
 	) as Map<number, Injection>;
 	if (!constructorDeps) {
 		return undefined;
@@ -25,7 +28,7 @@ export function resolveConstructorDeps(
 				(injection.namespace ? injection.namespace + ":" : "") +
 					injection.name,
 				injection.filter,
-				injection.array
+				injection.array,
 			);
 			parameters[index] = value;
 		}
@@ -33,13 +36,16 @@ export function resolveConstructorDeps(
 	}
 }
 
+/**
+ * @private
+ */
 export function resolvePropertyDeps(
 	constructor: Class,
-	container: import("./Container").Container
+	container: import("./container.js").Container,
 ): Map<string | symbol, unknown> {
 	const propertyDeps = Reflect.getMetadata(
 		MAIN_KEY + INJECTION + PROPERTY_INJECT,
-		constructor
+		constructor,
 	) as Map<string, Injection>;
 	if (!propertyDeps) {
 		return undefined;
@@ -51,7 +57,7 @@ export function resolvePropertyDeps(
 				(injection.namespace ? injection.namespace + ":" : "") +
 					injection.name,
 				injection.filter,
-				injection.array
+				injection.array,
 			);
 			properties.set(property, value);
 		}
@@ -59,14 +65,17 @@ export function resolvePropertyDeps(
 	}
 }
 
+/**
+ * @private
+ */
 export function resolveClass<I>(
 	constructor: Class<I>,
-	container: import("./Container").Container,
-	additonalParameters: unknown[]
+	container: import("./container.js").Container,
+	additionalParameters: unknown[],
 ): I {
 	const parameters = [
 		...(resolveConstructorDeps(constructor, container) ?? []),
-		...(additonalParameters ?? []),
+		...(additionalParameters ?? []),
 	];
 	const properties = resolvePropertyDeps(constructor, container);
 	const instance: I = new constructor(...parameters);
@@ -81,16 +90,19 @@ export function resolveClass<I>(
 		instance[
 			Reflect.getMetadata(
 				MAIN_KEY + INJECTION + AFTER_CONSTRUCT,
-				constructor
+				constructor,
 			)
 		]();
 	}
 	return instance;
 }
 
+/**
+ * @private
+ */
 export function resolveImplementations(
 	implementations: Implementation[],
-	filter: import("./Namespace").Filter
+	filter: import("./namespace.js").Filter,
 ): Implementation[] {
 	if (!filter) {
 		return implementations;

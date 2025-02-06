@@ -1,4 +1,4 @@
-import { resolveImplementations } from "./resolver";
+import { resolveImplementations } from "./resolver.js";
 import {
 	Class,
 	ClassImplementation,
@@ -6,7 +6,8 @@ import {
 	DynamicValueImplementation,
 	Implementation,
 	Interface,
-} from "./utils";
+} from "./utils.js";
+
 /**
  * A namespace stores all dependencies
  */
@@ -15,12 +16,12 @@ export class Namespace {
 	/**
 	 * Creates a new namespace
 	 */
-	public constructor(private parent: import("./Container").Container) {}
+	public constructor(private parent: import("./container.js").Container) {}
 
 	/**
 	 * Starts a dependency bind and returns an object to bind various values
 	 * @param name The dependency name
-	 * @typeParam I Passed to {@link BindObject}
+	 * @typeParam I Passed to {@link ToObject}
 	 */
 	public bind<I>(name: string): ToObject<I> {
 		if (!this.interfaces.has(name)) {
@@ -33,7 +34,7 @@ export class Namespace {
 		return new ToObject<I>(object as Implementation, () =>
 			this.interfaces
 				.get(name)
-				.implementations.push(object as Implementation)
+				.implementations.push(object as Implementation),
 		);
 	}
 
@@ -69,33 +70,33 @@ export class Namespace {
 	public resolve(
 		dependency: string,
 		filter?: Filter,
-		array?: boolean
+		array?: boolean,
 	): unknown[] | unknown;
 
 	public resolve(
 		dependency: string,
 		filter?: Filter,
-		array?: boolean
+		array?: boolean,
 	): unknown[] | unknown {
-		const interfacee = this.interfaces.get(dependency);
-		if (!interfacee) {
+		const iInterface = this.interfaces.get(dependency);
+		if (!iInterface) {
 			throw new Error("Invalid dependency");
 		}
-		const impls = resolveImplementations(
-			interfacee.implementations,
-			filter
+		const implementations = resolveImplementations(
+			iInterface.implementations,
+			filter,
 		);
 		if (!array) {
-			if (impls.length > 1) {
+			if (implementations.length > 1) {
 				throw new Error(
-					"More than one dependency found. Make sure you apply different with* functions to different dependencies"
+					"More than one dependency found. Make sure you apply different with* functions to different dependencies",
 				);
 			}
-			const foundImpl = impls[0];
+			const foundImpl = implementations[0];
 			if (!foundImpl) {
-				if (!interfacee.implementations.length) {
+				if (!iInterface.implementations.length) {
 					throw new Error(
-						"Dependency not binded. You called bind without calling any of to* functions"
+						"Dependency not bound. You called bind without calling any of 'to*' functions",
 					);
 				} else {
 					throw new Error("Dependency not found");
@@ -125,16 +126,19 @@ export class Namespace {
 			}
 		} else {
 			const deps: unknown[] = [];
-			if (!impls.length) {
-				if (!interfacee.implementations.length) {
+			if (!implementations.length) {
+				if (!iInterface.implementations.length) {
 					throw new Error(
-						"Dependency not binded. You called bind without calling any of the to* functions"
+						"Dependency not bound. You called bind without calling any of the to* functions",
 					);
 				} else {
 					throw new Error("Dependency not found");
 				}
 			}
-			for (const foundImpl of impls.slice(0, filter?.arrayMaxSize)) {
+			for (const foundImpl of implementations.slice(
+				0,
+				filter?.arrayMaxSize,
+			)) {
 				switch (foundImpl.type) {
 					case "class": {
 						if (foundImpl.singleton && foundImpl.instance) {
@@ -203,11 +207,11 @@ export interface CustomNamespace {
 	/**
 	 * Same as {@link Namespace.resolve}
 	 */
-	getter(dependency: string, filter?: Filter, array?: boolean): unknown;
+	resolve(dependency: string, filter?: Filter, array?: boolean): unknown;
 }
 
 /**
- * An object returned by {@link Namespace.bind} used to bind the values. Must atleast use one of the functions
+ * An object returned by {@link Namespace.bind} used to bind the values. Must at least use one of the functions
  * @typeParam I Type parameter that specifies parameter types
  */
 export class ToObject<I> {
@@ -215,7 +219,7 @@ export class ToObject<I> {
 	private added: boolean;
 	public constructor(
 		private implementation: Implementation,
-		private adder: () => void
+		private adder: () => void,
 	) {
 		this.with = new WithObject(this.implementation);
 	}
@@ -268,7 +272,7 @@ export class ToObject<I> {
 }
 
 /**
- * An object returned by {@link BindObject} used to add attributes to the current bind. Does not need to be used
+ * An object returned by {@link ToObject} used to add attributes to the current bind. Does not need to be used
  */
 export class WithObject {
 	public constructor(private implementation: Implementation) {}

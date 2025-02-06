@@ -5,11 +5,11 @@ yadi can inject dependencies using constructor injection and property injection
 ## Installation
 Installing yadi is easy like running
 ```bash
-$ npm install Begad666/yadi reflect-metadata --save
+$ npm install @begad/yadi reflect-metadata --save
 ```
 or
 ```bash
-$ yarn add Begad666/yadi reflect-metadata
+$ yarn add @begad/yadi reflect-metadata
 ```
 You will need a transpiler that supports decorators
 

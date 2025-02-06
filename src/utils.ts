@@ -44,12 +44,15 @@ export interface ImplementationAttributes {
 export interface Injection {
 	namespace: string;
 	name: string;
-	filter: import("./Namespace").Filter;
+	filter: import("./namespace.js").Filter;
 	array: boolean;
 }
 
+/**
+ * @private
+ */
 export function isNativeNamespace(
-	namespace: import("./Namespace").NamespaceUnion
-): namespace is import("./Namespace").Namespace {
-	return !("getter" in namespace && "canBeRemoved" in namespace);
+	namespace: import("./namespace.js").NamespaceUnion,
+): namespace is import("./namespace.js").Namespace {
+	return !("resolve" in namespace && "canBeRemoved" in namespace);
 }
